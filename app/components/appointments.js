@@ -358,13 +358,15 @@ export default class appointmentsComponent extends Component {
   }
 
   displayMarkedDays(){
+    var numerito2;
+    var day2;
     let markedVariable = this.retrieveData();
     if(markedVariable != null){
     for (let i = 0; i < this.queue.length; i++) {       
       var match = false;
-      
       for (let j = 0; j < markedVariable.length; j++) {
-        if (this.queue[i].number == markedVariable[j].number && this.queue[i].dayOfWeek == markedVariable[j].dayOfWeek) {
+        console.log(this.queue[i].number)
+        if (this.queue[i].number == numerito2 && this.queue[i].dayOfWeek == day2) {
           match = true;
           this.queue[i].marked = true;
           break;
@@ -385,7 +387,6 @@ export default class appointmentsComponent extends Component {
     for (let i = 0; i < this.userList.length; i++) {
     var daysStored = JSON.parse(localStorage.getItem(this.userList[i].user));
     this.userList[i].days = daysStored;
-    console.log(this.userList);
     }
 
     //Si el día, el mes y el number coinciden con algunos de los dias de la semana le colocas a esa posicion del this.queue el usuario correspondiente a ese día.
@@ -395,9 +396,7 @@ export default class appointmentsComponent extends Component {
     for (let i = 0; i < this.userList.length; i++) {      
       objectU = this.userList[i].user.replace("@copyright.com", "");      
       objectX = this.userList[i].days;
-      console.log(objectX);
       for (let i = 0; i < objectX.length; i++) {   
-        console.log(objectX[i]);
         var numerito = objectX[i].split(' ')[2];
         var finder = this.queue.findIndex(o => o.number == numerito);
         if(finder>=0){
