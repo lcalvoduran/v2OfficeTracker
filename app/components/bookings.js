@@ -15,7 +15,6 @@ export default class bookingsComponent extends Component {
 
   @action updateArray(daysMarkeds, dateFormatted, month, marked) {
     let salvaGuarda = this.selectedDay;
-    console.log(salvaGuarda);
     this.arrayDays.push(daysMarkeds);
     this.arrayDays = this.arrayDays.flat(1);
     this.selectedDay = this.arrayDays.filter(estado => estado.marked == true);
@@ -49,11 +48,20 @@ export default class bookingsComponent extends Component {
     let variable = this.login.retrieveSessionStorage();
     let daysLocal = JSON.parse(localStorage.getItem(variable));
     if (variable){
-      if(daysLocal){
-        daysLocal.reduce((a, v) => ({ ...a, [v]: v}), {});
-        return daysLocal;
-      }else{
-      }
+      var day, month, number;
+      var arrayLocal = [];
+      //Convertiremos el string a objeto me retornará un daysLocal
+      if(daysLocal == null){}else{
+      daysLocal = Object.values(daysLocal)
+      .forEach(val => {
+          day = val.split(' ')[0]; month = val.split(' ')[1]; number = val.split(' ')[2];
+          arrayLocal.push({'day': day, 'month': month, 'number': number});
+        }
+      );
+      daysLocal = arrayLocal;
+      return daysLocal;
+    }
+
     }else{
     }
   }

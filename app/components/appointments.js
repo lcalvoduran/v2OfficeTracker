@@ -6,7 +6,7 @@ import { action } from '@ember/object';
 let today = new Date();
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear(); 
-let months = [  'January',  'February',  'March',  'April',  'May',  'June',  'July',  'August',  'September',  'October',  'November',  'December'];
+let months = [  'Jan',  'Feb',  'Mar',  'Apr',  'May',  'Jun',  'Jul',  'Aug',  'Sep',  'Oct',  'Nov',  'Dec'];
 let newArray=[];
 export default class appointmentsComponent extends Component {
   @service login;
@@ -22,8 +22,6 @@ export default class appointmentsComponent extends Component {
       month: currentMonth,
       weekend: true,
       user: [],
-      // users de strings + un inner join entre el usuario y los dias
-
     },
     { dayOfWeek: 'Tue',
       marked: false,
@@ -387,6 +385,7 @@ export default class appointmentsComponent extends Component {
     for (let i = 0; i < this.userList.length; i++) {
     var daysStored = JSON.parse(localStorage.getItem(this.userList[i].user));
     this.userList[i].days = daysStored;
+    console.log(this.userList);
     }
 
     //Si el día, el mes y el number coinciden con algunos de los dias de la semana le colocas a esa posicion del this.queue el usuario correspondiente a ese día.
@@ -394,10 +393,12 @@ export default class appointmentsComponent extends Component {
     var objectU;
     let objectX;
     for (let i = 0; i < this.userList.length; i++) {      
-      objectU = this.userList[i].user.replace("@copyright.com", "");
+      objectU = this.userList[i].user.replace("@copyright.com", "");      
       objectX = this.userList[i].days;
-      for (let i = 0; i < objectX.length; i++) {        
-        var numerito = objectX[i].number;
+      console.log(objectX);
+      for (let i = 0; i < objectX.length; i++) {   
+        console.log(objectX[i]);
+        var numerito = objectX[i].split(' ')[2];
         var finder = this.queue.findIndex(o => o.number == numerito);
         if(finder>=0){
           this.queue[finder].user.push(objectU);
