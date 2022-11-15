@@ -230,7 +230,9 @@ export default class appointmentsComponent extends Component {
     for (let i = 0; i < this.queue.length; i++) {       
       var match = false;
       for (let j = 0; j < markedVariable.length; j++) {
-        if (this.queue[i].number == markedVariable[j].number && this.queue[i].dayOfWeek == markedVariable[j].dayOfWeek) {
+        var numerito = markedVariable[j].split(' ')[2];
+        var diita = markedVariable[j].split(' ')[0];
+        if (this.queue[i].number == numerito && this.queue[i].dayOfWeek == diita) {
           match = true;
           this.queue[i].marked = true;
           break;
@@ -301,7 +303,9 @@ export default class appointmentsComponent extends Component {
       var match = false;
       if(markedVariable == null){return 0}
       for (let j = 0; j < markedVariable.length; j++) {
-        if (this.queue[i].number == markedVariable[j].number && this.queue[i].dayOfWeek == markedVariable[j].dayOfWeek) {
+        var numerito = markedVariable[j].split(' ')[2];
+        var diita = markedVariable[j].split(' ')[0];
+        if (this.queue[i].number == numerito && this.queue[i].dayOfWeek == diita) {
           match = true;
           this.queue[i].marked = true;
           break;
@@ -365,8 +369,10 @@ export default class appointmentsComponent extends Component {
     for (let i = 0; i < this.queue.length; i++) {       
       var match = false;
       for (let j = 0; j < markedVariable.length; j++) {
-        console.log(this.queue[i].number)
-        if (this.queue[i].number == numerito2 && this.queue[i].dayOfWeek == day2) {
+        var numerito = markedVariable[j].split(' ')[2];
+        var diita = markedVariable[j].split(' ')[0];
+        if (this.queue[i].number == numerito && this.queue[i].dayOfWeek == diita) {
+        //if (this.queue[i].number == numerito2 && this.queue[i].dayOfWeek == day2) {
           match = true;
           this.queue[i].marked = true;
           break;
