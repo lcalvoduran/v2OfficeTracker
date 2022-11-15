@@ -18,21 +18,22 @@ export default class LoginService extends Service {
   }
 
   leaveSession() {
-    let filtrado = this.userArray.filter(element => element.estado == true);
-    if (filtrado.length>0){
-    let positionFilter = this.userArray.findIndex(element=> element.email == filtrado[0].email && element.estado == filtrado[0].estado);
-    this.userArray.splice(positionFilter, 
-                          1,
-                          {                           
-                          "email": filtrado[0].email,                          
-                          "password": 1234,
-                          "estado": false,
-                          }
-                          );
-    localStorage.setItem('currentUser', JSON.stringify(this.userArray));
-    location.reload();  
-    }else{
-      console.log("No hay ningún usuario logeado");
+    let filtrado = this.userArray.filter((element) => element.estado == true);
+    if (filtrado.length > 0) {
+      let positionFilter = this.userArray.findIndex(
+        (element) =>
+          element.email == filtrado[0].email &&
+          element.estado == filtrado[0].estado
+      );
+      this.userArray.splice(positionFilter, 1, {
+        email: filtrado[0].email,
+        password: 1234,
+        estado: false,
+      });
+      localStorage.setItem('currentUser', JSON.stringify(this.userArray));
+      location.reload();
+    } else {
+      console.log('No hay ningún usuario logeado');
     }
   }
 
@@ -45,20 +46,18 @@ export default class LoginService extends Service {
     } else {
       this.userArray = [];
       const arr = JSON.parse(localStorage.getItem('currentUser'));
-      var foundState = arr.find(estado => estado.estado == true)
+      var foundState = arr.find((estado) => estado.estado == true);
       if (foundState) {
         this.userArray = [...this.userArray, ...arr];
-        //return this.userArray[0].email;     
+        //return this.userArray[0].email;
         return foundState.email;
-      }else{
-      this.userArray = [];
-      this.userArray = [...this.userArray, ...arr];
-      if(foundState == null){
-        return "Sign In / Register";
-      }
+      } else {
+        this.userArray = [];
+        this.userArray = [...this.userArray, ...arr];
+        if (foundState == null) {
+          return 'Sign In / Register';
+        }
       }
     }
   }
-
-
 }
