@@ -18,7 +18,6 @@ let months = [
   'Dec',
 ];
 export default class selecteddaysComponent extends Component {
-  @tracked selectedDay;
   @service login;
   constructor() {
     super(...arguments);
@@ -26,7 +25,7 @@ export default class selecteddaysComponent extends Component {
 
   @action saveDates() {
     let keyUser = this.login.retrieveSessionStorage();
-    var controllerDates = this.args.selectedDay;
+    var controllerDates = this.args.arrayDays;
     var dateSelected;
     var arrayDates = [];
     if (controllerDates.length == 0) {
@@ -55,7 +54,6 @@ export default class selecteddaysComponent extends Component {
   }
 
   get totalSelected() {
-    this.selectedDay = this.args.selectedDay;
-    return this.selectedDay;
+    return this.args.arrayDays;
   }
 }

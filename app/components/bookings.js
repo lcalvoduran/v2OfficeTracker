@@ -10,38 +10,24 @@ export default class bookingsComponent extends Component {
 
   constructor() {
     super(...arguments);
-    this.selectedDay = this.retrieveDaysFromLocalStorage();
+    this.arrayDays = this.retrieveDaysFromLocalStorage();
   }
 
   @action updateArray(daysMarkeds, dateFormatted, month, marked) {
-    let salvaGuarda = this.selectedDay;
+    var salvaGuarda = this.retrieveDaysFromLocalStorage();
     this.arrayDays.push(daysMarkeds);
-    this.arrayDays = this.arrayDays.flat(1);
-    this.selectedDay = this.arrayDays.filter((estado) => estado.marked == true);
-
-    const createHash = (oneObject) => {
-      const keys = Object.keys(oneObject).sort().join('');
-      const values = Object.values(oneObject).sort().join('');
-      return `${keys}${values}`;
-    };
-    const remueveObjetosDuplicados = (someArray) => {
-      const history = {};
-      const newDeduplicatedArray = [];
-      for (let i = 0; i < someArray.length; i += 1) {
-        const hash = createHash(someArray[i]);
-        if (!history?.[hash]) {
-          newDeduplicatedArray.push(someArray[i]);
-          history[hash] = true;
-        }
-      }
-      return newDeduplicatedArray;
-    };
-    this.selectedDay = remueveObjetosDuplicados(this.selectedDay);
-    if (salvaGuarda != null) {
-      this.selectedDay = [...this.selectedDay, ...salvaGuarda];
-      this.selectedDay = remueveObjetosDuplicados(this.selectedDay);
+    var flateado = this.arrayDays = this.arrayDays.flat(1).slice(-7);
+    var filtradisimo = flateado.filter((estado) => estado.marked == true);
+    if (filtradisimo != null) {      
+      console.log(filtradisimo);
+      console.log(salvaGuarda);
+      return this.arrayDays = filtradisimo;      
+    }else{
+      return this.arrayDays = [];
     }
   }
+
+
 
   retrieveDaysFromLocalStorage() {
     let variable = this.login.retrieveSessionStorage();
@@ -49,8 +35,8 @@ export default class bookingsComponent extends Component {
     if (variable) {
       var day, month, number;
       var arrayLocal = [];
-      //Convertiremos el string a objeto me retornará un daysLocal
       if (daysLocal == null) {
+        return this.arrayDays = [];
       } else {
         daysLocal = Object.values(daysLocal).forEach((val) => {
           day = val.split(' ')[0];
