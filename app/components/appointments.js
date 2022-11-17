@@ -145,7 +145,7 @@ export default class appointmentsComponent extends Component {
             marked: this.isMarked,
             number: number,
             weekend: true,
-            month: months[currentMonth],
+            month: currentMonth,
           }
         );
         let newArray = this.queue;
@@ -154,7 +154,7 @@ export default class appointmentsComponent extends Component {
         this.args.updateArray(
           newArray,
           dateFormatted,
-          months[currentMonth],
+          currentMonth,
           !this.isMarked
         );
       }

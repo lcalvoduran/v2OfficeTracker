@@ -47,10 +47,13 @@ export default class selecteddaysComponent extends Component {
     window.location.reload();
   }
   @action clearDates(number, month) {
-    let findArray = this.selectedDay.findIndex(
+    console.log(this.args.arrayDays)
+    let findArray = this.args.arrayDays.findIndex(
       (element) => element.number == number && element.month == month
     );
-    this.selectedDay = this.selectedDay.splice(findArray, 1);
+    console.log(findArray);
+    //this.selectedDay = this.selectedDay.splice(findArray, 1);
+    this.args.arrayDays.splice(findArray, 1);
   }
 
   get totalSelected() {
