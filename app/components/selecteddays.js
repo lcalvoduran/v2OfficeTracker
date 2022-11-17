@@ -2,7 +2,6 @@ import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-
 let months = [
   'Jan',
   'Feb',
@@ -47,13 +46,11 @@ export default class selecteddaysComponent extends Component {
     window.location.reload();
   }
   @action clearDates(number, month) {
-    console.log(this.args.arrayDays)
+
     let findArray = this.args.arrayDays.findIndex(
       (element) => element.number == number && element.month == month
     );
-    console.log(findArray);
-    //this.selectedDay = this.selectedDay.splice(findArray, 1);
-    this.args.arrayDays.splice(findArray, 1);
+    //this.selectedDay = this.selectedDay.splice(findArray, 1);    
   }
 
   get totalSelected() {
