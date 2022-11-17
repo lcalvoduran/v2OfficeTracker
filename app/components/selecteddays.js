@@ -50,6 +50,7 @@ export default class selecteddaysComponent extends Component {
     let findArray = this.args.arrayDays.findIndex(
       (element) => element.number == number && element.month == month
     );
+
     //this.selectedDay = this.selectedDay.splice(findArray, 1);    
   }
 
