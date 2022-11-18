@@ -43,8 +43,8 @@ export default class selecteddaysComponent extends Component {
         localStorage.setItem(keyUser, JSON.stringify(arrayDates));
       }
     }
-    window.alert('The changes will be stored in the local Database');
-    window.location.reload();
+    //window.alert('The changes will be stored in the local Database');
+    //window.location.reload();
   }
   @action clearDates(number, month) {
 

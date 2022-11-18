@@ -93,7 +93,6 @@ export default class appointmentsComponent extends Component {
     this.displayMarkedDays();
     this.editUsernames();
     this.displayedSavedDays();
-    console.log(this.args.arrayDays)
   }
 
   currentMonday(d) {
@@ -157,7 +156,7 @@ export default class appointmentsComponent extends Component {
           dateFormatted,
           currentMonth,
           !this.isMarked
-        );
+        );        
       }
     }
   }
@@ -390,6 +389,8 @@ export default class appointmentsComponent extends Component {
   retrieveData() {
     let variable = this.login.retrieveSessionStorage();
     let daysLocal = JSON.parse(localStorage.getItem(variable));
+    console.log(daysLocal);
+    console.log(this.args.arrayDays);
     if (variable) {
       if (daysLocal) {
         daysLocal.reduce((a, v) => ({ ...a, [v]: v }), {});
