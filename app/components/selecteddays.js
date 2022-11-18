@@ -17,6 +17,7 @@ let months = [
   'Dec',
 ];
 export default class selecteddaysComponent extends Component {
+  @tracked total;
   @service login;
   constructor() {
     super(...arguments);
@@ -47,14 +48,15 @@ export default class selecteddaysComponent extends Component {
   }
   @action clearDates(number, month) {
 
-    let findArray = this.args.arrayDays.findIndex(
+    let findArray = this.total.findIndex(
       (element) => element.number == number && element.month == month
     );
-
-    //this.selectedDay = this.selectedDay.splice(findArray, 1);    
+    this.total = this.total.splice(findArray, 1);
+    this.total[0].marked=false;
   }
 
   get totalSelected() {
-    return this.args.arrayDays;
+    this.total = this.args.arrayDays;
+    return this.total;
   }
 }
