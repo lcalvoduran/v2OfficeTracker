@@ -62,6 +62,10 @@ export default class bookingsComponent extends Component {
       return this.arrayDays = [];
     }
   }
+
+  @action updateCleared(){
+    console.log("hello friend");
+  }
  
   retrieveDaysFromLocalStorage() {
     let variable = this.login.retrieveSessionStorage();
