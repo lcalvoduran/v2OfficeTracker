@@ -93,6 +93,7 @@ export default class appointmentsComponent extends Component {
     this.displayMarkedDays();
     this.editUsernames();
     this.displayedSavedDays();
+    console.log(this.args.arrayDays)
   }
 
   currentMonday(d) {
@@ -138,8 +139,8 @@ export default class appointmentsComponent extends Component {
         this.isMarked = !this.isMarked;
         let positionObject = this.queue.findIndex((x) => x.number == number);
         this.queue.splice(
-          positionObject, //Posicion del objeto
-          1, //Número de items a borrar
+          positionObject, 
+          1, 
           {
             dayOfWeek: day,
             marked: this.isMarked,

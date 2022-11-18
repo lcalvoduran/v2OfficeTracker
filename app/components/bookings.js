@@ -63,8 +63,11 @@ export default class bookingsComponent extends Component {
     }
   }
 
-  @action updateCleared(){
-    console.log("hello friend");
+  @action updateCleared(finder){
+    console.log("there are the array days");
+    this.arrayDays[finder].marked=false;
+    console.log(this.arrayDays);
+
   }
  
   retrieveDaysFromLocalStorage() {
